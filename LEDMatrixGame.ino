@@ -1,4 +1,5 @@
-#include "time.h"
+#include<ctime>
+#include<cstdlib>
 
 int left = 1;
 int right = 2;
@@ -13,13 +14,13 @@ void PositionController(){
   //initializes starting point of player, the variable keeps track of player location
 
   //Read buttons and act on it
-  if (digitalRead(left) = HIGH & dot_position > 0){
+  if (digitalRead(left) == HIGH & dot_position > 0){
     digitalWrite(dot_position + 3, LOW);
     dot_position = dot_position - 1;
     digitalWrite(dot_position + 3, HIGH);
   }
    
-  if (digitalRead(right) = HIGH & dot_position < 4){
+  if (digitalRead(right) == HIGH & dot_position < 4){
     digitalWrite(dot_position + 3, LOW);
     dot_position = dot_position + 1;
     digitalWrite(dot_position + 3, HIGH);
@@ -36,7 +37,7 @@ void setup() {
     
     // Display LEDs //
     pinMode(3, OUPTUT);
-    pinmode(4, OUTPUT);
+    pinMode(4, OUTPUT);
     pinMode(5, OUTPUT);
     pinMode(6, OUTPUT);
     pinMode(7, OUTPUT);
@@ -45,14 +46,16 @@ void setup() {
 
 void loop() {
   // Generate random number
+  srand(time(0));
+  int correct_position = rand() % 5;
   
   // Print desired position to Serial
   Serial.println(correct_position);
+  
+  //Controlling the position. I somehow have to make it run at the same time as delay().
   PositionController();
-
-  // I have to somehow make PositionController() run continuously,
   delay(1000);
-  if (button_position == correct_position){
+  if (dot_position == correct_position){
     Serial.println(" ")
   }
   else {
