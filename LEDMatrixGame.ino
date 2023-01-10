@@ -23,6 +23,8 @@ void PositionController(){
   }
 }
 
+int current_time;
+
 //Generate correct position.
 int PositionGenerator(){
   srand(time(0));
