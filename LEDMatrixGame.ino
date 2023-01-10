@@ -1,6 +1,8 @@
 #include<ctime>
 #include<cstdlib>
 
+//Gotta fix current_time being local.
+
 int left = 1;
 int right = 2;
 
@@ -25,6 +27,7 @@ void PositionController(){
 int PositionGenerator(){
   srand(time(0));
   int correct_position = rand() % 5;
+  current_time = millis();
   return correct_position;
 }
 
@@ -43,17 +46,18 @@ void setup() {
     pinMode(7, OUTPUT);
 }
 
+// Generate correct position.
+cp = PositionGenerator();
+
 void loop() {
-  // Generate correct position.
-  cp = PositionGenerator();
-  
+
   // Print desired position to Serial
   Serial.println(cp);
   
   // Checks if at least 100 ms (1 s) has passed since the correct position has been sent to serial
   if (millis() - current_time >= 1000){
     if (dot_position == correct_position){
-      Serial.println(" ");
+      Serial.println(PositionGenerator());
     }
     else {
       Serial.println("You failed");
