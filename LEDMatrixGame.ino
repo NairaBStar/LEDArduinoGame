@@ -13,13 +13,19 @@ void PositionController(){
     digitalWrite(dot_position + 3, LOW);
     dot_position = dot_position - 1;
     digitalWrite(dot_position + 3, HIGH);
-  }
-   
+  } 
   if (digitalRead(right) == HIGH && dot_position < 4){
     digitalWrite(dot_position + 3, LOW);
     dot_position = dot_position + 1;
     digitalWrite(dot_position + 3, HIGH);
   }
+}
+
+//Generate correct position.
+int PositionGenerator(){
+  srand(time(0));
+  int correct_position = rand() % 5;
+  return correct_position;
 }
 
 void setup() {
@@ -38,21 +44,24 @@ void setup() {
 }
 
 void loop() {
-  // Generate random number
-  srand(time(0));
-  int correct_position = rand() % 5;
+  // Generate correct position.
+  cp = PositionGenerator();
   
   // Print desired position to Serial
-  Serial.println(correct_position);
+  Serial.println(cp);
   
-  //Controlling the position. I somehow have to make it run at the same time as delay().
-  PositionController();
-  delay(1000);
-  if (dot_position == correct_position){
-    Serial.println(" ");
+  // Checks if at least 100 ms (1 s) has passed since the correct position has been sent to serial
+  if (millis() - current_time >= 1000){
+    if (dot_position == correct_position){
+      Serial.println(" ");
+    }
+    else {
+      Serial.println("You failed");
+      break;
+    }    
   }
   else {
-    Serial.println("You failed");
-    break;
+    PositionController()
   }
+    
 }
