@@ -4,7 +4,7 @@
 int left = 1;
 int right = 2;
 
-//initializes starting point of player, the variable keeps track of player location in bottom row
+//initializes starting point of player, the variable keeps track of player location in LED row
 int dot_position = 3;
 
 void PositionController(){
