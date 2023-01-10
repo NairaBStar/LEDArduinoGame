@@ -50,7 +50,7 @@ void loop() {
   Serial.println(correct_position);
   PositionController();
 
-  // I have to somehow make PositionController() run continuously
+  // I have to somehow make PositionController() run continuously,
   delay(1000);
   if (button_position == correct_position){
     Serial.println(" ")
