@@ -24,6 +24,7 @@ void PositionController(){
 }
 
 int current_time;
+int cp;
 
 //Generate correct position.
 int PositionGenerator(){
@@ -48,7 +49,7 @@ void setup() {
     pinMode(7, OUTPUT);
   
     // Generate correct position for first time
-    int cp = PositionGenerator();
+    cp = PositionGenerator();
     // Print desired position to Serial for first time
     Serial.println(cp);
   
