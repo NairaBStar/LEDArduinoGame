@@ -1,7 +1,7 @@
 #include<ctime>
 #include<cstdlib>
 
-//Gotta fix current_time being local.
+//Gotta fix position issues (+3 stuff)
 
 const int left = 1;
 const int right = 2;
@@ -47,6 +47,8 @@ void setup() {
     pinMode(5, OUTPUT);
     pinMode(6, OUTPUT);
     pinMode(7, OUTPUT);
+  
+    digitalWrite(3, HIGH);
   
     // Generate correct position for first time
     cp = PositionGenerator();
