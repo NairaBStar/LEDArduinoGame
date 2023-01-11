@@ -46,16 +46,15 @@ void setup() {
     pinMode(5, OUTPUT);
     pinMode(6, OUTPUT);
     pinMode(7, OUTPUT);
+  
+    // Generate correct position for first time
+    cp = PositionGenerator();
+    // Print desired position to Serial for first time
+    Serial.println(cp);
+  
 }
 
-// Generate correct position.
-cp = PositionGenerator();
-
 void loop() {
-
-  // Print desired position to Serial
-  Serial.println(cp);
-  
   // Checks if at least 100 ms (1 s) has passed since the correct position has been sent to serial
   if (millis() - current_time >= 1000){
     if (dot_position == cp){
