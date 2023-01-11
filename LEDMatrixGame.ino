@@ -3,8 +3,8 @@
 
 //Gotta fix current_time being local.
 
-int left = 1;
-int right = 2;
+const int left = 1;
+const int right = 2;
 
 //initializes starting point of player, the variable keeps track of player location in LED row
 int dot_position = 3;
@@ -58,8 +58,9 @@ void loop() {
   
   // Checks if at least 100 ms (1 s) has passed since the correct position has been sent to serial
   if (millis() - current_time >= 1000){
-    if (dot_position == correct_position){
-      Serial.println(PositionGenerator());
+    if (dot_position == cp){
+      cp = PositionGenerator();
+      Serial.println(cp);
     }
     else {
       Serial.println("You failed");
@@ -67,7 +68,7 @@ void loop() {
     }    
   }
   else {
-    PositionController()
+    PositionController();
   }
     
 }
