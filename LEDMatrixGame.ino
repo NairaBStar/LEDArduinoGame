@@ -1,7 +1,7 @@
 #include<ctime>
 #include<cstdlib>
 
-//Gotta fix position issues (+3 stuff)
+//Gotta fix position issues (+3 stuff) and see if rand() generates reals or integers.
 
 const int left = 1;
 const int right = 2;
@@ -12,14 +12,14 @@ int dot_position = 3;
 void PositionController(){
   //Read buttons and act on it
   if (digitalRead(left) == HIGH && dot_position > 0){
-    digitalWrite(dot_position + 3, LOW);
+    digitalWrite(dot_position + 2, LOW);
     dot_position = dot_position - 1;
-    digitalWrite(dot_position + 3, HIGH);
+    digitalWrite(dot_position + 2, HIGH);
   } 
   if (digitalRead(right) == HIGH && dot_position < 4){
-    digitalWrite(dot_position + 3, LOW);
+    digitalWrite(dot_position + 2, LOW);
     dot_position = dot_position + 1;
-    digitalWrite(dot_position + 3, HIGH);
+    digitalWrite(dot_position + 2, HIGH);
   }
 }
 
@@ -29,7 +29,7 @@ int cp;
 //Generate correct position.
 int PositionGenerator(){
   srand(time(0));
-  int correct_position = rand() % 5;
+  int correct_position = rand() % 6;
   current_time = millis();
   return correct_position;
 }
