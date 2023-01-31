@@ -1,4 +1,3 @@
-#include<ctime>
 #include<cstdlib>
 
 //Gotta fix position issues (+3 stuff) and see if rand() generates reals or integers.
@@ -28,7 +27,7 @@ int cp;
 
 //Generate correct position.
 int PositionGenerator(){
-  srand(time(0));
+  srand(analogRead(0));
   int correct_position = rand() % 6;
   current_time = millis();
   return correct_position;
